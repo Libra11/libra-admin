@@ -4,13 +4,12 @@ import { useRouter } from "vue-router";
 import { message } from "@/utils/message";
 import { loginRules } from "./utils/rule";
 import { initRouter } from "@/router/utils";
-import { useNav } from "@/layout/hooks/useNav";
 import type { FormInstance } from "element-plus";
 import { useLayout } from "@/layout/hooks/useLayout";
 import { useUserStoreHook } from "@/store/modules/user";
-import { bg, avatar, illustration } from "./utils/static";
+import { bg } from "./utils/static";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-import { ref, reactive, toRaw, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
 
 import dayIcon from "@/assets/svg/day.svg?component";
@@ -30,7 +29,6 @@ initStorage();
 
 const { dataTheme, dataThemeChange } = useDataThemeChange();
 dataThemeChange();
-const { title } = useNav();
 
 const ruleForm = reactive({
   username: "admin",
@@ -77,8 +75,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="select-none">
-    <img :src="bg" class="wave" />
+  <div class="select-none h-screen w-screen">
+    <img :src="bg" class="h-screen w-screen fixed" />
     <div class="flex-c absolute right-5 top-3">
       <!-- 主题 -->
       <el-switch
@@ -89,21 +87,31 @@ onBeforeUnmount(() => {
         @change="dataThemeChange"
       />
     </div>
-    <div class="login-container">
-      <div class="img">
-        <component :is="toRaw(illustration)" />
+    <div class="flex-c h-full">
+      <div class="login-description flex-dc flex-1">
+        <div class="w-2/3">
+          <div class="title">
+            <h1 class="text-4xl font-bold">Libra 后台管理系统模板</h1>
+          </div>
+          <div class="text-base text-gray-400 font-light mt-6">
+            这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+            这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+            这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+            这是简介这是简介这是简介这是简介
+          </div>
+        </div>
       </div>
-      <div class="login-box">
-        <div class="login-form">
-          <avatar class="avatar" />
+      <div class="flex-c flex-1">
+        <div class="login-form flex-dc w-1/2">
           <Motion>
-            <h2 class="outline-none">{{ title }}</h2>
+            <h2 class="outline-none">登录</h2>
           </Motion>
 
           <el-form
             ref="ruleFormRef"
             :model="ruleForm"
             :rules="loginRules"
+            class="w-full max-w-sm"
             size="large"
           >
             <Motion :delay="100">
@@ -140,7 +148,7 @@ onBeforeUnmount(() => {
 
             <Motion :delay="250">
               <el-button
-                class="w-full mt-4"
+                class="w-full mt-4 !h-12"
                 size="default"
                 type="primary"
                 :loading="loading"
@@ -155,10 +163,6 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url("@/style/login.css");
-</style>
 
 <style lang="scss" scoped>
 :deep(.el-input-group__append, .el-input-group__prepend) {

@@ -7,6 +7,10 @@
     @apply flex justify-center items-center;
   }
 
+  .flex-dc {
+    @apply flex flex-col justify-center items-center;
+  }
+
   .flex-ac {
     @apply flex justify-around items-center;
   }

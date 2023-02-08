@@ -129,3 +129,19 @@
     }
   }
 }
+
+// input
+.el-input__wrapper {
+  height: 48px !important;
+  border-radius: 10px !important;
+  border: none;
+  // box-shadow: none !important;
+}
+
+// button
+.el-button {
+  border-radius: 10px !important;
+  &:hover {
+    transition: all 0.3s;
+  }
+}

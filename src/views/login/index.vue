@@ -10,12 +10,10 @@ import { useUserStoreHook } from "@/store/modules/user";
 import { bg } from "./utils/static";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
-import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
-
-import dayIcon from "@/assets/svg/day.svg?component";
-import darkIcon from "@/assets/svg/dark.svg?component";
 import Lock from "@iconify-icons/ri/lock-fill";
 import User from "@iconify-icons/ri/user-3-fill";
+import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
+const { setLayoutThemeColor } = useDataThemeChange();
 
 defineOptions({
   name: "Login"
@@ -26,9 +24,6 @@ const ruleFormRef = ref<FormInstance>();
 
 const { initStorage } = useLayout();
 initStorage();
-
-const { dataTheme, dataThemeChange } = useDataThemeChange();
-dataThemeChange();
 
 const ruleForm = reactive({
   username: "admin",
@@ -67,6 +62,7 @@ function onkeypress({ code }: KeyboardEvent) {
 
 onMounted(() => {
   window.document.addEventListener("keypress", onkeypress);
+  setLayoutThemeColor();
 });
 
 onBeforeUnmount(() => {
@@ -76,46 +72,45 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="select-none h-screen w-screen">
-    <img :src="bg" class="h-screen w-screen fixed" />
-    <div class="flex-c absolute right-5 top-3">
-      <!-- 主题 -->
-      <el-switch
-        v-model="dataTheme"
-        inline-prompt
-        :active-icon="dayIcon"
-        :inactive-icon="darkIcon"
-        @change="dataThemeChange"
-      />
-    </div>
+    <img :src="bg" class="h-screen w-screen fixed -z-10" />
     <div class="flex-c h-full">
-      <div class="login-description flex-dc flex-1">
+      <div class="login-description flex-dc flex-1 max-md:hidden">
         <div class="w-2/3">
           <div class="title">
-            <h1 class="text-4xl font-bold">Libra 后台管理系统模板</h1>
+            <Motion>
+              <h1 class="text-6xl font-bold text-white">后台管理系统模板</h1>
+            </Motion>
           </div>
-          <div class="text-base text-gray-400 font-light mt-6">
-            这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介
-            这是简介这是简介这是简介这是简介这是简介这是简介这是简介
-            这是简介这是简介这是简介这是简介这是简介这是简介这是简介
-            这是简介这是简介这是简介这是简介
-          </div>
+          <Motion :delay="250">
+            <div
+              class="text-base text-gray-200 font-light mt-8 indent-8 leading-7"
+            >
+              这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+              这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+              这是简介这是简介这是简介这是简介这是简介这是简介这是简介
+              这是简介这是简介这是简介这是简介
+            </div>
+          </Motion>
         </div>
       </div>
-      <div class="flex-c flex-1">
-        <div class="login-form flex-dc w-1/2">
+      <div class="flex-c flex-1 h-full">
+        <div
+          class="login-form flex-dc 2xl:w-2/3 xl:w-1/2 max-md:w-11/12 md:max-w-md min-h-1/2 px-6 py-16 bg-white rounded-xl shadow-2xl"
+        >
           <Motion>
-            <h2 class="outline-none">登录</h2>
+            <h2 class="outline-none mb-8">登录</h2>
           </Motion>
 
           <el-form
             ref="ruleFormRef"
             :model="ruleForm"
             :rules="loginRules"
-            class="w-full max-w-sm"
+            class="w-full"
             size="large"
           >
             <Motion :delay="100">
               <el-form-item
+                class="!mb-10"
                 :rules="[
                   {
                     required: true,
@@ -126,7 +121,6 @@ onBeforeUnmount(() => {
                 prop="username"
               >
                 <el-input
-                  clearable
                   v-model="ruleForm.username"
                   placeholder="账号"
                   :prefix-icon="useRenderIcon(User)"
@@ -135,9 +129,8 @@ onBeforeUnmount(() => {
             </Motion>
 
             <Motion :delay="150">
-              <el-form-item prop="password">
+              <el-form-item prop="password" class="!mb-10">
                 <el-input
-                  clearable
                   show-password
                   v-model="ruleForm.password"
                   placeholder="密码"
@@ -148,7 +141,7 @@ onBeforeUnmount(() => {
 
             <Motion :delay="250">
               <el-button
-                class="w-full mt-4 !h-12"
+                class="w-full !h-12 shadow-xl"
                 size="default"
                 type="primary"
                 :loading="loading"

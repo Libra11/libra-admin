@@ -1,3 +1,3 @@
-import bg from "@/assets/login/background.png";
+import bg from "@/assets/login/bg.png";
 
 export { bg };

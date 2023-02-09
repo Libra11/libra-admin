@@ -19,7 +19,6 @@ const { title } = useNav();
         to="/"
       >
         <FontIcon icon="team-iconlogo" svg style="width: 35px; height: 35px" />
-        <span class="sidebar-title">{{ title }}</span>
       </router-link>
       <router-link
         v-else
@@ -29,7 +28,6 @@ const { title } = useNav();
         to="/"
       >
         <FontIcon icon="team-iconlogo" svg style="width: 35px; height: 35px" />
-        <span class="sidebar-title">{{ title }}</span>
       </router-link>
     </transition>
   </div>
@@ -37,18 +35,16 @@ const { title } = useNav();
 
 <style lang="scss" scoped>
 .sidebar-logo-container {
-  position: relative;
-  width: 100%;
-  height: 48px;
-  text-align: center;
-  overflow: hidden;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
 
   .sidebar-logo-link {
-    height: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin-top: 5px;
+    width: 48px;
+    height: 48px;
+    color: $subMenuActiveText;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .sidebar-title {
       display: block;

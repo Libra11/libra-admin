@@ -156,7 +156,7 @@ const layoutHeader = defineComponent({
         pureSetting.hiddenSideBar ? 'main-hidden' : ''
       ]"
     >
-      <div v-if="set.fixedHeader">
+      <div v-if="set.fixedHeader" class="flex-dc">
         <layout-header />
         <!-- 主体内容 -->
         <app-main :fixed-header="set.fixedHeader" />

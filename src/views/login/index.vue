@@ -94,8 +94,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div class="flex-c flex-1 h-full">
-        <div
-          class="login-form flex-dc 2xl:w-2/3 xl:w-1/2 max-md:w-11/12 md:max-w-md min-h-1/2 px-6 py-16 bg-white rounded-xl shadow-2xl"
+        <el-card
+          class="login-form flex-dc 2xl:w-2/3 xl:w-1/2 max-md:w-11/12 md:max-w-md min-h-1/2 px-1 py-11 !rounded-xl shadow-2xl"
         >
           <Motion>
             <h2 class="outline-none mb-8">登录</h2>
@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
               </el-button>
             </Motion>
           </el-form>
-        </div>
+        </el-card>
       </div>
     </div>
   </div>

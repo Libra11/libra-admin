@@ -134,6 +134,7 @@ const transitionMain = defineComponent({
   height: 100vh;
   position: relative;
   overflow-x: hidden;
+  background-color: #f7f6f9;
 }
 
 .app-main-nofixed-header {

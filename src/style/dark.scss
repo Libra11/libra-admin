@@ -3,7 +3,7 @@
 /* 暗黑模式适配 */
 html.dark {
   /* 自定义深色背景颜色 */
-  // --el-bg-color: #020409;
+  --el-bg-color: #1f1f1f;
   $border-style: #303030;
   $color-white: #fff;
 
@@ -17,7 +17,6 @@ html.dark {
   .horizontal-header .submenu-title-noDropdown {
     background: var(--el-bg-color) !important;
   }
-
   .app-main {
     background: #020409 !important;
   }

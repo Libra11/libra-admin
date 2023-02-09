@@ -173,18 +173,6 @@ function resolvePath(routePath) {
       </div>
       <div
         v-if="
-          isCollapse &&
-          layout === 'vertical' &&
-          props.item?.pathList?.length === 1
-        "
-        :style="getDivStyle"
-      >
-        <span :style="getMenuTextStyle">
-          {{ onlyOneChild.meta.title }}
-        </span>
-      </div>
-      <div
-        v-if="
           isCollapse && layout === 'mix' && props.item?.pathList?.length === 2
         "
         :style="getDivStyle"
@@ -251,17 +239,14 @@ function resolvePath(routePath) {
         :offset="-10"
         :disabled="!props.item.showTooltip"
       >
-        <template #content>
-          {{ props.item.meta.title }}
-        </template>
+        <template #content> {{ props.item.meta.title }} </template>
         <div
           ref="menuTextRef"
+          v-if="!isCollapse"
           :style="getSubTextStyle"
           @mouseover="hoverMenu(props.item)"
         >
-          <span :style="getSpanStyle">
-            {{ props.item.meta.title }}
-          </span>
+          <span :style="getSpanStyle"> {{ props.item.meta.title }} </span>
         </div>
       </el-tooltip>
       <FontIcon
